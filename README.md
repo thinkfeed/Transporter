@@ -50,7 +50,8 @@ JSON Web Token包含了3个部分，使用点（.）进行分隔，它们是：
 ### 工作方式
 在身份验证中，当用户成功地使用它们的密码登录后，一个JSON Web Token就会被服务器返回，且必须存储于客户端本地，而不是传统做法中在服务器创建一个session，并返回一个cookie。
 无论何时用户想要访问一个受保护的路由或资源，客户端应该随请求一起发送JWT。JWT通常在 Authentication HTTP头部中，使用 Bearer 格式（schema）存放。HTTP头部的内容可能长这样：
-> Authorization: Bearer <token>
+> Authorization: Bearer \<token\>
+
 这是一个无状态（stateless）的认证机制，因为用户状态并未存放在服务器内存中。服务器的受保护路由会在Authentication头部中检查是否存在合法的JWT，如果存在，用户就被允许访问受保护的资源。JWT是自包含的，所以相关的信息都在里面，减少了多次查询数据库的必要。
 这让你充分可以依赖无状态的数据API，甚至向下游服务发出请求。哪个域名提供API无所谓，所以跨域资源共享（CORS，Cross-Origin Resource Sharing）不会引起麻烦
 下图展示了这个过程：
